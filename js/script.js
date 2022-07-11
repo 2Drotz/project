@@ -4,12 +4,23 @@
 
 // console.log(result);
 
-let one = 10,
-   two = 10;
+const numberOfFilms = prompt("Сколько фильмов вы уже посмотрели");
 
-console.log(one++);
-console.log(--two);
-console.log(100 % 3);
+const personalMovieDB = {
+   count: numberOfFilms,
+   movies: {},
+   actors: {},
+   genres: [],
+   privat: false
+};
 
+const lastFilm = prompt("Один из послежних просмотренных фильмов?");
 
-console.log(2 * 10 === 20);
+const filmGrade = prompt("На сколько оцените его?");
+const lastFilm2 = prompt("Один из послежних просмотренных фильмов?");
+
+const filmGrade2 = prompt("На сколько оцените его?");
+
+personalMovieDB.movies[lastFilm] = filmGrade;
+
+console.log(personalMovieDB);
