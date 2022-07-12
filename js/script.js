@@ -131,3 +131,28 @@ const num = "15.5";
 console.log(Math.round(num));
 console.log(parseInt(num));
 console.log(parseFloat(num));
+
+
+function calculateVolumeAndArea(num) {
+   if (typeof (num) !== 'number' || num < 0 || !Number.isInteger(num)) {
+      return 'При вычислении произошла ошибка';
+   }
+   let v = Math.pow(num, 3);
+   let p = num * num * 6;
+   return `Объем куба: ${v}, площадь всей поверхности: ${p}`;
+}
+console.log(calculateVolumeAndArea(5.5));
+
+function getCoupeNumber(num) {
+   if (typeof (num) !== 'number' || num < 0 || !Number.isInteger(num)) {
+      return 'Ошибка инф';
+   } else if (num > 36 || num === 0) {
+      return 'Таких мест нет';
+   }
+   for (let i = 4; i <= 36; i = i + 4) {
+      if (num <= i) {
+         return Math.ceil(i / 4);
+      }
+   }
+}
+console.log(getCoupeNumber(35.5));
