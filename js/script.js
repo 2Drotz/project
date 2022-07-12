@@ -4,7 +4,17 @@
 
 // console.log(result);
 
-const numberOfFilms = prompt("Сколько фильмов вы уже посмотрели");
+let numberOfFilms;
+
+
+function start() {
+   numberOfFilms = prompt("Сколько фильмов вы уже просмотрели?", '2');
+   while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
+      numberOfFilms = prompt("Сколько фильмов вы уже просмотрели?", '2');
+   }
+}
+
+start();
 
 const personalMovieDB = {
    count: numberOfFilms,
@@ -14,137 +24,110 @@ const personalMovieDB = {
    privat: false
 };
 
-const lastFilm = prompt("Один из послежних просмотренных фильмов?");
-
-const filmGrade = prompt("На сколько оцените его?");
-const lastFilm2 = prompt("Один из послежних просмотренных фильмов?");
-
-const filmGrade2 = prompt("На сколько оцените его?");
-
-personalMovieDB.movies[lastFilm] = filmGrade;
-
-console.log(personalMovieDB);
-
-const num = '50';
-
-switch (num) {
-   case 49:
-      console.log('Неверно');
-      break;
-   case 100:
-      console.log('Неверно');
-      break;
-   case 50:
-      console.log('ОК');
-      break;
-   default: console.log('??');
-}
-
-let number = 50;
-
-while (number < 55) {
-   console.log(number);
-   number++;
-}
-
-do {
-   console.log(number);
-   number++;
-}
-while (number < 55);
-
-for (let i = 1; i < 10; i++) {
-   console.log(i);
-   for (let j = 1; j < 10; j++) {
-      console.log(j);
+function showMyDB(hidden) {
+   if (hidden == false) {
+      console.log(personalMovieDB);
    }
 }
+showMyDB(personalMovieDB.privat);
 
-let result2 = "";
-const lenght = 7;
-
-for (let i = 1; i < lenght; i++) {
-   for (let j = 0; j < i; j++) {
-      result += "*";
+function writeYourGenres() {
+   for (let i = 1; i <= 3; i++) {
+      let user = prompt(`Ваш любимы жанр под номером, ${i}!`);
+      personalMovieDB.genres[i - 1] = user;
    }
-
-   result += '\n';
+   console.log(personalMovieDB);
 }
+writeYourGenres();
 
-console.log(result);
+function rememberMyFilms() {
+   for (let i = 0; i < 2; i++) {
+      const lastFilm = prompt("Один из послежних просмотренных фильмов?");
+      const filmGrade = prompt("На сколько оцените его?");
 
 
-
-for (let i = 1; i < lenght; i++) {
-   for (let j = 0; j < i; j++) {
-      for (let j = 0; j < i; j++) {
-         result += "*";
+      if (lastFilm != null && filmGrade != null && lastFilm != '' && filmGrade != '' && lastFilm.length < 50) {
+         personalMovieDB.movies[lastFilm] = filmGrade;
+         console.log('done');
+      } else {
+         console.log('error');
+         i--;
       }
    }
-
-   result += '\n';
 }
-
-console.log(result);
-
-for (let i = 1; i < 11; i++) {
-   let a = i % 2;
-   if (a === 0) {
-      console.log(i);
-   }
-}
-
-let a = 0;
-while (a < 16) {
-   if (a % 2 !== 0) {
-      console.log(a);
-   }
-   a++;
-}
-
-const arrayOfNumbers = [];
-let j = 0;
-// Пишем решение вот тут
-for (let i = 5; i < 11; i++) {
-   {
-      arrayOfNumbers[j] = i;
-   }
-   j++;
-}
-console.log(arrayOfNumbers);
-// Не трогаем
-return arrayOfNumbers;
+rememberMyFilms();
 
 
-const arr = [3, 5, 8, 16, 20, 23, 50];
-const results = [];
-for (let i = 0; i < arr.length; i++) {
-   results[i] = arr[i];
-}
-console.log(results);
-
-const data = [5, 10, 'Shopping', 20, 'Homework'];
-
-// Пишем решение вот тут
-for (let i = 0; i < data.length; i++) {
-   if (typeof (data[i]) === number) {
-      data[i] *= 2;
+function detecteedPersonalLevel() {
+   if (personalMovieDB.count < 10) {
+      console.log("Просмотрено мало фильмов");
+   } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+      console.log("Вы классический зритель");
+   } else if (personalMovieDB.count > 30) {
+      console.log("Вы киноман");
    } else {
-      data[i] += ' - done';
+      console.log("Произошла ошибка");
    }
+
+}
+detecteedPersonalLevel();
+
+
+function calc(a, b) {
+   return (a + b);
+}
+console.log(calc(1, 1));
+
+
+let logger = function () {
+   console.log('Hello');
+};
+logger();
+
+
+let filter = (a, b) => {
+   return a + b;
+};
+console.log(filter(4, 66));
+
+
+const usdCurr = 28;
+const eurCurr = 32;
+
+function current(amount, curr) {
+   console.log(curr * amount);
+}
+current(100, eurCurr);
+
+
+function sayHello(name) {
+   return `Привет, ${name}!`;
 }
 
-const lines = 5;
+sayHello('Alex');
 
-let res = "";
+function getMathResult(num, number) {
+   if (typeof (number) !== 'number' || number <= 0) {
+      return num;
+   }
+   let res = "";
+   for (let i = 1; i <= number; i++) {
+      if (i === number) {
+         res += `${num * i}`;
+      } else {
+         res += `${num * i}---`;
+      }
 
-for (let i = 0; i < lines; i++) {
-   for (let j = 0; j < lines - i; j++) {
-      res += " ";
    }
-   for (let j = 0; j < 2 * i + 1; j++) {
-      res += "*";
-   }
-   res += "\n";
+   return res;
 }
-console.log(res);
+getMathResult(10, 0);
+
+
+const nam = 'Dima';
+console.log(nam.substr(1, 2));
+
+const num = "15.5";
+console.log(Math.round(num));
+console.log(parseInt(num));
+console.log(parseFloat(num));
