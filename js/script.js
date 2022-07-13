@@ -275,7 +275,87 @@
 
 
 
-const str = prompt("", "");
-const product = str.split(" ");
-product.sort();
-console.log(product.join(': '));
+// const str = prompt("", "");
+// const product = str.split(" ");
+// product.sort();
+// console.log(product.join(': '));
+
+
+const number = {
+   a: 1,
+   b: 5,
+   c: 66,
+   x: {
+      y: 6,
+      z: 7
+   }
+};
+
+function copy(mainObj) {
+   let objCopy = {};
+
+   let key;
+   for (key in mainObj) {
+      objCopy[key] = mainObj[key];
+   }
+   return objCopy;
+}
+const newNumbers = copy(number);
+
+newNumbers.c = 65;
+newNumbers.x.z = 5;
+
+console.log(newNumbers);
+console.log(number);
+
+
+
+const add = {
+   d: 17,
+   i: 20
+};
+
+console.log(Object.assign(number, add));
+
+
+
+const oldArray = [1, 2, 34, 5];
+const newArray = oldArray.slice();
+
+
+newArray[1] = 'ad';
+
+console.log(oldArray);
+console.log(newArray);
+
+
+const video = ['You', 'Ru', 'Tw'],
+   poisk = ['YA', 'GO', 'Fire'],
+   internet = [...video, ...poisk, 'mail', 'opera'];
+
+
+console.log(video);
+console.log(poisk);
+console.log(internet);
+
+const Arr = [1, 2, 5];
+function num(a, b, c) {
+   console.log(a);
+   console.log(b);
+   console.log(c);
+}
+const nmb = num(...Arr);
+
+const array = ['12a', 'sdfs'];
+
+let a = [...array];
+console.log(a);
+
+const Obj = {
+   a: 1,
+   b: 2
+};
+
+let newObject = { ...Obj };
+
+console.log(newObject);
