@@ -262,11 +262,11 @@
 // }
 
 
-// const arr = [1, 2, 7, 3, 4];
+const arr = [1, 2, 7, 3, 4];
 
-// arr.forEach(function (item, i, arr) {
-//    console.log(`${item}, ${i}, ${arr}`);
-// });
+arr.forEach(function (item, i, arr) {
+   console.log(`${item}, ${i}, ${arr}`);
+});
 
 
 // arr.pop();
@@ -359,3 +359,46 @@ const Obj = {
 let newObject = { ...Obj };
 
 console.log(newObject);
+
+
+const numbers = [-1, 2, -3, 4, -5, 6, -7, 0, -8];
+
+const signCount = function (array) {
+   let result = 0;
+   for (let i = 1; i < array.length; ++i) {
+      if (Math.sign(array[i]) !== 1 && Math.sign(array[i]) !== 0) {
+         result++;
+      }
+
+   }
+   return result;
+};
+console.log(signCount(numbers));
+
+
+const personalPlanPeter = {
+   name: "Peter",
+   age: "29",
+   skills: {
+      languages: ['ru', 'eng'],
+      programmingLangs: {
+         js: '20%',
+         php: '10%'
+      },
+      exp: '1 month'
+   },
+   showAgeAndLangs: function (plan) {
+      const { age } = plan;
+      const { languages } = plan.skills;
+      let str = `Мне ${age} и я владею языками: `;
+
+      languages.forEach(function (lang, i) {
+         str += `${lang.toUpperCase()} номер ${i}`;
+      });
+
+      return str;
+   }
+};
+
+let aasd = personalPlanPeter.showAgeAndLangs(personalPlanPeter);
+console.log(aasd);
