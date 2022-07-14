@@ -4,73 +4,74 @@
 
 // console.log(result);
 
-// let numberOfFilms;
+
+const personalMovieDB = {
+   count: 0,
+   movies: {},
+   actors: {},
+   genres: [],
+   privat: false,
+   start: function () {
+      personalMovieDB.count = prompt("Сколько фильмов вы уже просмотрели?", '2');
+      while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
+         personalMovieDB.count = prompt("Сколько фильмов вы уже просмотрели?", '2');
+      }
+   },
+   rememberMyFilms: function () {
+      for (let i = 0; i < 2; i++) {
+         const lastFilm = prompt("Один из послежних просмотренных фильмов?").trim();
+         const filmGrade = prompt("На сколько оцените его?").trim();
 
 
-// function start() {
-//    numberOfFilms = prompt("Сколько фильмов вы уже просмотрели?", '2');
-//    while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
-//       numberOfFilms = prompt("Сколько фильмов вы уже просмотрели?", '2');
-//    }
-// }
+         if (lastFilm != null && filmGrade != null && lastFilm != '' && filmGrade != '' && lastFilm.length < 50) {
+            personalMovieDB.movies[lastFilm] = filmGrade;
+            console.log('done');
+         } else {
+            console.log('error');
+            i--;
+         }
+      }
+   },
+   showMyDB: function (hidden) {
+      if (hidden == false) {
+         console.log(personalMovieDB);
+      }
+   },
+   detecteedPersonalLevel: function () {
+      if (personalMovieDB.count < 10) {
+         console.log("Просмотрено мало фильмов");
+      } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+         console.log("Вы классический зритель");
+      } else if (personalMovieDB.count > 30) {
+         console.log("Вы киноман");
+      } else {
+         console.log("Произошла ошибка");
+      }
+   },
+   toggleVisibleMyDb: function () {
+      if (personalMovieDB.privat) {
+         personalMovieDB.privat = false;
+      } else {
+         personalMovieDB.privat = true;
+      }
+   },
+   writeYourGenres: function () {
+      for (let i = 1; i < 2; i++) {
+         let genres = prompt(`Введите любимые жанры через запятую`).toLowerCase();
 
-// start();
-
-// const personalMovieDB = {
-//    count: numberOfFilms,
-//    movies: {},
-//    actors: {},
-//    genres: [],
-//    privat: false
-// };
-
-// function showMyDB(hidden) {
-//    if (hidden == false) {
-//       console.log(personalMovieDB);
-//    }
-// }
-// showMyDB(personalMovieDB.privat);
-
-// function writeYourGenres() {
-//    for (let i = 1; i <= 3; i++) {
-//       let user = prompt(`Ваш любимы жанр под номером, ${i}!`);
-//       personalMovieDB.genres[i - 1] = user;
-//    }
-//    console.log(personalMovieDB);
-// }
-// writeYourGenres();
-
-// function rememberMyFilms() {
-//    for (let i = 0; i < 2; i++) {
-//       const lastFilm = prompt("Один из послежних просмотренных фильмов?").trim();
-//       const filmGrade = prompt("На сколько оцените его?").trim();
-
-
-//       if (lastFilm != null && filmGrade != null && lastFilm != '' && filmGrade != '' && lastFilm.length < 50) {
-//          personalMovieDB.movies[lastFilm] = filmGrade;
-//          console.log('done');
-//       } else {
-//          console.log('error');
-//          i--;
-//       }
-//    }
-// }
-// rememberMyFilms();
-
-
-// function detecteedPersonalLevel() {
-//    if (personalMovieDB.count < 10) {
-//       console.log("Просмотрено мало фильмов");
-//    } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
-//       console.log("Вы классический зритель");
-//    } else if (personalMovieDB.count > 30) {
-//       console.log("Вы киноман");
-//    } else {
-//       console.log("Произошла ошибка");
-//    }
-
-// }
-// detecteedPersonalLevel();
+         if (genres === '' || genres == null) {
+            console.log('Вы ввели некорректные данные или вообще');
+            i--;
+         } else {
+            personalMovieDB.genres = genres.split(", ");
+            personalMovieDB.genres.sort();
+         }
+      }
+      personalMovieDB.genres.forEach((item, i) => {
+         console.log(`Любимы жанр ${i + 1} - это ${item}`);
+      });
+   }
+};
 
 
 // function calc(a, b) {
@@ -262,11 +263,11 @@
 // }
 
 
-const arr = [1, 2, 7, 3, 4];
+// const arr = [1, 2, 7, 3, 4];
 
-arr.forEach(function (item, i, arr) {
-   console.log(`${item}, ${i}, ${arr}`);
-});
+// arr.forEach(function (item, i, arr) {
+//    console.log(`${item}, ${i}, ${arr}`);
+// });
 
 
 // arr.pop();
@@ -281,124 +282,264 @@ arr.forEach(function (item, i, arr) {
 // console.log(product.join(': '));
 
 
-const number = {
-   a: 1,
-   b: 5,
-   c: 66,
-   x: {
-      y: 6,
-      z: 7
-   }
-};
+// const number = {
+//    a: 1,
+//    b: 5,
+//    c: 66,
+//    x: {
+//       y: 6,
+//       z: 7
+//    }
+// };
 
-function copy(mainObj) {
-   let objCopy = {};
+// function copy(mainObj) {
+//    let objCopy = {};
 
-   let key;
-   for (key in mainObj) {
-      objCopy[key] = mainObj[key];
-   }
-   return objCopy;
-}
-const newNumbers = copy(number);
+//    let key;
+//    for (key in mainObj) {
+//       objCopy[key] = mainObj[key];
+//    }
+//    return objCopy;
+// }
+// const newNumbers = copy(number);
 
-newNumbers.c = 65;
-newNumbers.x.z = 5;
+// newNumbers.c = 65;
+// newNumbers.x.z = 5;
 
-console.log(newNumbers);
-console.log(number);
-
-
-
-const add = {
-   d: 17,
-   i: 20
-};
-
-console.log(Object.assign(number, add));
+// console.log(newNumbers);
+// console.log(number);
 
 
 
-const oldArray = [1, 2, 34, 5];
-const newArray = oldArray.slice();
+// const add = {
+//    d: 17,
+//    i: 20
+// };
+
+// console.log(Object.assign(number, add));
 
 
-newArray[1] = 'ad';
 
-console.log(oldArray);
-console.log(newArray);
-
-
-const video = ['You', 'Ru', 'Tw'],
-   poisk = ['YA', 'GO', 'Fire'],
-   internet = [...video, ...poisk, 'mail', 'opera'];
+// const oldArray = [1, 2, 34, 5];
+// const newArray = oldArray.slice();
 
 
-console.log(video);
-console.log(poisk);
-console.log(internet);
+// newArray[1] = 'ad';
 
-const Arr = [1, 2, 5];
-function num(a, b, c) {
-   console.log(a);
-   console.log(b);
-   console.log(c);
-}
-const nmb = num(...Arr);
-
-const array = ['12a', 'sdfs'];
-
-let a = [...array];
-console.log(a);
-
-const Obj = {
-   a: 1,
-   b: 2
-};
-
-let newObject = { ...Obj };
-
-console.log(newObject);
+// console.log(oldArray);
+// console.log(newArray);
 
 
-const numbers = [-1, 2, -3, 4, -5, 6, -7, 0, -8];
-
-const signCount = function (array) {
-   let result = 0;
-   for (let i = 1; i < array.length; ++i) {
-      if (Math.sign(array[i]) !== 1 && Math.sign(array[i]) !== 0) {
-         result++;
-      }
-
-   }
-   return result;
-};
-console.log(signCount(numbers));
+// const video = ['You', 'Ru', 'Tw'],
+//    poisk = ['YA', 'GO', 'Fire'],
+//    internet = [...video, ...poisk, 'mail', 'opera'];
 
 
-const personalPlanPeter = {
-   name: "Peter",
-   age: "29",
-   skills: {
-      languages: ['ru', 'eng'],
-      programmingLangs: {
-         js: '20%',
-         php: '10%'
-      },
-      exp: '1 month'
-   },
-   showAgeAndLangs: function (plan) {
-      const { age } = plan;
-      const { languages } = plan.skills;
-      let str = `Мне ${age} и я владею языками: `;
+// console.log(video);
+// console.log(poisk);
+// console.log(internet);
 
-      languages.forEach(function (lang, i) {
-         str += `${lang.toUpperCase()} номер ${i}`;
-      });
+// const Arr = [1, 2, 5];
+// function num(a, b, c) {
+//    console.log(a);
+//    console.log(b);
+//    console.log(c);
+// }
+// const nmb = num(...Arr);
 
-      return str;
-   }
-};
+// const array = ['12a', 'sdfs'];
 
-let aasd = personalPlanPeter.showAgeAndLangs(personalPlanPeter);
-console.log(aasd);
+// let a = [...array];
+// console.log(a);
+
+// const Obj = {
+//    a: 1,
+//    b: 2
+// };
+
+// let newObject = { ...Obj };
+
+// console.log(newObject);
+
+
+// const numbers = [-1, 2, -3, 4, -5, 6, -7, 0, -8];
+
+// const signCount = function (array) {
+//    let result = 0;
+//    for (let i = 1; i < array.length; ++i) {
+//       if (Math.sign(array[i]) !== 1 && Math.sign(array[i]) !== 0) {
+//          result++;
+//       }
+
+//    }
+//    return result;
+// };
+// console.log(signCount(numbers));
+
+
+// const personalPlanPeter = {
+//    name: "Peter",
+//    age: "29",
+//    skills: {
+//       languages: ['ru', 'eng'],
+//       programmingLangs: {
+//          js: '20%',
+//          php: '10%'
+//       },
+//       exp: '1 month'
+//    },
+//    showAgeAndLangs: function (plan) {
+//       const { age } = plan;
+//       const { languages } = plan.skills;
+//       let str = `Мне ${age} и я владею языками: `;
+
+//       languages.forEach(function (lang, i) {
+//          str += `${lang.toUpperCase()} номер ${i}`;
+//       });
+
+//       return str;
+//    }
+// };
+
+// let aasd = personalPlanPeter.showAgeAndLangs(personalPlanPeter);
+// console.log(aasd);
+
+
+// const family = ['Peter', 'Ann', 'Alex', 'Linda'];
+
+// function showFamily(arr) {
+//    let str = '';
+//    arr.length === 0 ? str = "Семья пуста" : str = 'Семья состоит из:';
+
+//    arr.forEach(function (member) {
+//       str += ` ${member}`;
+//    });
+//    return str;
+// }
+
+// console.log(showFamily(family));
+
+
+
+// const favoriteCities = ['liSBon', 'ROME', 'miLan', 'Dublin'];
+
+// function standardizeStrings(arr) {
+//    arr.forEach(function (city) {
+//       let lower = city.toLowerCase();
+//       console.log(`${lower}`);
+//    });
+// }
+// standardizeStrings(favoriteCities);
+
+// const someString = 'This is some strange string';
+
+// function reverse(str) {
+
+//    if (typeof (str) !== 'string') {
+//       return "Ошибка!";
+//    }
+//    const res = str.split("").reverse().join("");
+//    return res;
+// }
+// console.log(reverse(someString));
+
+
+
+// const baseCurrencies = ['USD', 'EUR'];
+// const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
+
+// function availableCurr(arr, missingCurr) {
+//    let str = '';
+//    arr.length === 0 ? str = "Нет доступных валют" : str = 'Доступные валюты:\n';
+
+//    arr.forEach(function (curr) {
+//       if (curr !== missingCurr) {
+//          str += `${curr}\n`;
+//       }
+//    });
+//    return str;
+// }
+// console.log(availableCurr([...baseCurrencies, ...additionalCurrencies], 'CNY'));
+
+
+// const soldier = {
+//    health: 100,
+//    armor: 150
+// };
+
+// const dima = Object.create(soldier);
+// console.log(dima.armor);
+
+
+
+// const shoppingMallData = {
+//    shops: [
+//       {
+//          width: 10,
+//          length: 5
+//       },
+//       {
+//          width: 15,
+//          length: 7
+//       },
+//       {
+//          width: 20,
+//          length: 5
+//       },
+//       {
+//          width: 8,
+//          length: 10
+//       }
+//    ],
+//    height: 5,
+//    moneyPer1m3: 30,
+//    budget: 50000
+// }
+
+// function isBudgetEnough(data) {
+//    let p = 0;
+//    let v = 0;
+
+//    data.shops.forEach(shop => {
+//       p += shop.width * shop.length;
+//    });
+
+//    v = data.height * p;
+//    if (data.budget - (v * data.moneyPer1m3) >= 0) {
+//       return 'Бюджета достаточно';
+//    } else {
+//       return 'Бюджета недостаточно';
+//    }
+// }
+
+// isBudgetEnough(shoppingMallData);
+
+// const students = ['Peter', 'Andrew', 'Ann', 'Mark', 'Josh', 'Sandra', 'Cris', 'Bernard', 'Takesi', 'Sam'];
+
+// function sortStudentsByGroups(arr) {
+
+//    arr.sort();
+//    let one = [];
+//    let two = [];
+//    let three = [];
+//    let res = [];
+
+
+
+//    for (let i = 0; i < arr.length; i++) {
+//       if (i < 3) {
+//          one.push(arr[i]);
+//       } else if (i < 6) {
+//          two.push(arr[i]);
+//       } else if (i < 9) {
+//          three.push(arr[i]);
+//       } else {
+//          res.push(arr[i]);
+//       }
+//    }
+//    return [one, two, three, `Оставшиеся студенты ${res.length === 0 ? '-' : res.join(", ")}`]
+// }
+// console.log(sortStudentsByGroups(students));
+
+
+console.log(parseInt('15[x', 10));
