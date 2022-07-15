@@ -5,73 +5,73 @@
 // console.log(result);
 
 
-const personalMovieDB = {
-   count: 0,
-   movies: {},
-   actors: {},
-   genres: [],
-   privat: false,
-   start: function () {
-      personalMovieDB.count = prompt("Сколько фильмов вы уже просмотрели?", '2');
-      while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
-         personalMovieDB.count = prompt("Сколько фильмов вы уже просмотрели?", '2');
-      }
-   },
-   rememberMyFilms: function () {
-      for (let i = 0; i < 2; i++) {
-         const lastFilm = prompt("Один из послежних просмотренных фильмов?").trim();
-         const filmGrade = prompt("На сколько оцените его?").trim();
+// const personalMovieDB = {
+//    count: 0,
+//    movies: {},
+//    actors: {},
+//    genres: [],
+//    privat: false,
+//    start: function () {
+//       personalMovieDB.count = prompt("Сколько фильмов вы уже просмотрели?", '2');
+//       while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
+//          personalMovieDB.count = prompt("Сколько фильмов вы уже просмотрели?", '2');
+//       }
+//    },
+//    rememberMyFilms: function () {
+//       for (let i = 0; i < 2; i++) {
+//          const lastFilm = prompt("Один из послежних просмотренных фильмов?").trim();
+//          const filmGrade = prompt("На сколько оцените его?").trim();
 
 
-         if (lastFilm != null && filmGrade != null && lastFilm != '' && filmGrade != '' && lastFilm.length < 50) {
-            personalMovieDB.movies[lastFilm] = filmGrade;
-            console.log('done');
-         } else {
-            console.log('error');
-            i--;
-         }
-      }
-   },
-   showMyDB: function (hidden) {
-      if (hidden == false) {
-         console.log(personalMovieDB);
-      }
-   },
-   detecteedPersonalLevel: function () {
-      if (personalMovieDB.count < 10) {
-         console.log("Просмотрено мало фильмов");
-      } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
-         console.log("Вы классический зритель");
-      } else if (personalMovieDB.count > 30) {
-         console.log("Вы киноман");
-      } else {
-         console.log("Произошла ошибка");
-      }
-   },
-   toggleVisibleMyDb: function () {
-      if (personalMovieDB.privat) {
-         personalMovieDB.privat = false;
-      } else {
-         personalMovieDB.privat = true;
-      }
-   },
-   writeYourGenres: function () {
-      for (let i = 1; i < 2; i++) {
-         let genres = prompt(`Введите любимые жанры через запятую`).toLowerCase();
+//          if (lastFilm != null && filmGrade != null && lastFilm != '' && filmGrade != '' && lastFilm.length < 50) {
+//             personalMovieDB.movies[lastFilm] = filmGrade;
+//             console.log('done');
+//          } else {
+//             console.log('error');
+//             i--;
+//          }
+//       }
+//    },
+//    showMyDB: function (hidden) {
+//       if (hidden == false) {
+//          console.log(personalMovieDB);
+//       }
+//    },
+//    detecteedPersonalLevel: function () {
+//       if (personalMovieDB.count < 10) {
+//          console.log("Просмотрено мало фильмов");
+//       } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+//          console.log("Вы классический зритель");
+//       } else if (personalMovieDB.count > 30) {
+//          console.log("Вы киноман");
+//       } else {
+//          console.log("Произошла ошибка");
+//       }
+//    },
+//    toggleVisibleMyDb: function () {
+//       if (personalMovieDB.privat) {
+//          personalMovieDB.privat = false;
+//       } else {
+//          personalMovieDB.privat = true;
+//       }
+//    },
+//    writeYourGenres: function () {
+//       for (let i = 1; i < 2; i++) {
+//          let genres = prompt(`Введите любимые жанры через запятую`).toLowerCase();
 
-         if (genres === '' || genres == null) {
-            console.log('Вы ввели некорректные данные или вообще');
-            i--;
-         } else {
-            personalMovieDB.genres = genres.split(", ");
-            personalMovieDB.genres.sort();
-         }
-      }
-      personalMovieDB.genres.forEach((item, i) => {
-         console.log(`Любимы жанр ${i + 1} - это ${item}`);
-      });
-   }
-};
+//          if (genres === '' || genres == null) {
+//             console.log('Вы ввели некорректные данные или вообще');
+//             i--;
+//          } else {
+//             personalMovieDB.genres = genres.split(", ");
+//             personalMovieDB.genres.sort();
+//          }
+//       }
+//       personalMovieDB.genres.forEach((item, i) => {
+//          console.log(`Любимы жанр ${i + 1} - это ${item}`);
+//       });
+//    }
+// };
 
 
 // function calc(a, b) {
@@ -542,4 +542,110 @@ const personalMovieDB = {
 // console.log(sortStudentsByGroups(students));
 
 
-console.log(parseInt('15[x', 10));
+// for (let i = 1; i < 4; i++) {
+//    for (let j = 1; j < 6; j++) {
+//       let num = 3;
+//       console.log(num);
+//    }
+// }
+
+
+// let one = ['Hello', 'Привет'];
+// let two = { ru: 'Мир', eng: 'World' };
+// function foo(a, b) {
+//    const [first] = a;
+//    const { eng } = b;
+
+//    return `${first}  ${eng} `;
+// }
+
+// const result = foo(one, two);
+// console.log(result);
+
+
+// const restorantData = {
+//    menu: [
+//       {
+//          name: 'Salad Caesar',
+//          price: '14$'
+//       },
+//       {
+//          name: 'Pizza Diavola',
+//          price: '9$'
+//       },
+//       {
+//          name: 'Beefsteak',
+//          price: '17$'
+//       },
+//       {
+//          name: 'Napoleon',
+//          price: '7$'
+//       }
+//    ],
+//    waitors: [
+//       { name: 'Alice', age: 22 }, { name: 'John', age: 24 }
+//    ],
+//    averageLunchPrice: '20$',
+//    openNow: true
+// };
+
+// function transferWaitors(data) {
+//    const copy = Object.assign({}, data);
+
+//    // Нам просто нужно менять весь массив данных,
+//    // а не лезть напрямую менять каждого из сотрудников
+//    // Так как это верхний уровень объекта, то значение 
+//    // будет меняться только у копии
+//    copy.waitors = [{ name: 'Mike', age: 32 }];
+//    return copy;
+// }
+
+// console.log(transferWaitors(restorantData));
+// console.log(restorantData.waitors);
+
+
+// const box = document.getElementById('box'),
+//    btns = document.getElementsByTagName('button'),
+//    circle = document.getElementsByClassName('circle'),
+//    heart = document.querySelectorAll('.heart'),
+//    one = document.querySelector('.heart');
+// console.log(box);
+
+
+
+const rec = document.querySelectorAll('.promo__adv img'),
+   poster = document.querySelector('.promo__bg'),
+   movieList = document.querySelector('.promo__interactive-list'),
+   genre = poster.querySelector('.promo__genre');
+
+genre.textContent = 'драма';
+
+movieList.innerHTML = '';
+
+
+const movieDB = {
+   movies: [
+      'Логан',
+      "Паук",
+      "Человек",
+      "Книга",
+      "Хоббит"
+   ]
+};
+movieDB.movies.sort();
+
+
+
+poster.style.backgroundImage = 'url(../img/bg.jpg)';
+
+rec.forEach(item => {
+   item.remove();
+});
+
+movieDB.movies.forEach((film, i) => {
+   movieList.innerHTML += `
+      <li class="promo__interactive-item">${i + 1} ${film}
+			<div class="delete"></div>
+		</li>
+      `;
+});
