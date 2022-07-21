@@ -366,11 +366,10 @@
 
 // const signCount = function (array) {
 //    let result = 0;
-//    for (let i = 1; i < array.length; ++i) {
-//       if (Math.sign(array[i]) !== 1 && Math.sign(array[i]) !== 0) {
-//          result++;
+//    for (let i = 0; i < array.length; ++i) {
+//       if (Math.sign(array[i]) !== 1 && array[i] !== 0) {
+//          ++result;
 //       }
-
 //    }
 //    return result;
 // };
@@ -594,7 +593,7 @@
 
 //    // Нам просто нужно менять весь массив данных,
 //    // а не лезть напрямую менять каждого из сотрудников
-//    // Так как это верхний уровень объекта, то значение 
+//    // Так как это верхний уровень объекта, то значение
 //    // будет меняться только у копии
 //    copy.waitors = [{ name: 'Mike', age: 32 }];
 //    return copy;
@@ -613,39 +612,284 @@
 
 
 
-const rec = document.querySelectorAll('.promo__adv img'),
-   poster = document.querySelector('.promo__bg'),
-   movieList = document.querySelector('.promo__interactive-list'),
-   genre = poster.querySelector('.promo__genre');
-
-genre.textContent = 'драма';
-
-movieList.innerHTML = '';
 
 
-const movieDB = {
-   movies: [
-      'Логан',
-      "Паук",
-      "Человек",
-      "Книга",
-      "Хоббит"
-   ]
+
+// const links = document.querySelector('.links');
+
+
+// links.addEventListener('click', (e) => {
+//    e.preventDefault();
+//    console.log('good');
+// }, { once: true });
+// // btn.addEventListener('mouseenter', () => {
+// //    console.log("привет!");
+// // });
+
+// const btns = document.querySelectorAll('button');
+
+// const func = (e) => {
+//    e.preventDefault();
+//    console.log(e);
+// };
+
+// btns.forEach((btnss) => {
+//    btnss.addEventListener('click', func, { once: true });
+// });
+// console.log(document.querySelector('.overlay').Child);
+
+// console.log(document.querySelector("[data-btn = '3']").parentElement);
+// for (let node of document.body.childNodes) {
+//    if (node.nodeName == "#text") {
+//       continue;
+//    }
+//    console.log(node);
+// }
+
+
+// function factorial(n) {
+//    if (typeof (n) !== 'number' || !Number.isInteger(n)) {
+//       return "Ошибка, проверьте данные";
+//    }
+//    if (n >= 1) {
+//       return n * factorial(n - 1);
+//    } else {
+//       return 1;
+//    }
+// }
+// console.log(factorial(4));
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+   const rec = document.querySelectorAll('.promo__adv img'),
+      poster = document.querySelector('.promo__bg'),
+      movieList = document.querySelector('.promo__interactive-list'),
+      genre = poster.querySelector('.promo__genre'),
+      addForm = document.querySelector('.add'),
+      addInput = addForm.querySelector('.adding__input'),
+      checkbox = addForm.querySelector('[type = "checkbox"]'),
+      btnAdd = addForm.querySelector('button');
+
+   addForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      let newFilm = addInput.value;
+      const favorite = checkbox.checked;
+
+      if (newFilm) {
+         if (newFilm.length > 21) {
+            newFilm = `${newFilm.substring(0, 22)}...`;
+         }
+         if (favorite) {
+            console.log('Добовляем любимы фильм');
+         }
+         movieDB.movies.push(newFilm);
+         sortArray(movieDB.movies);
+
+         createMovieList(movieDB.movies, movieList);
+      }
+
+
+      event.target.reset();
+
+   });
+
+   const movieDB = {
+      movies: [
+         'Логан',
+         "Паук",
+         "Человек",
+         "Книга",
+         "Хоббит"
+      ]
+   };
+
+   const sortArray = (arr) => {
+      arr.sort();
+   };
+   const makeChanges = () => {
+      genre.textContent = 'драма';
+      poster.style.backgroundImage = 'url(../img/bg.jpg)';
+   };
+
+
+
+   const deleteAdv = (array) => {
+      array.forEach(item => {
+         item.remove();
+      });
+   };
+
+   function createMovieList(films, parent) {
+      parent.innerHTML = '';
+      sortArray(films);
+
+      films.forEach((film, i) => {
+         parent.innerHTML += `
+         <li class="promo__interactive-item">${i + 1} ${film}
+            <div class="delete"></div>
+         </li>`;
+      });
+
+      document.querySelectorAll('.delete').forEach((btn, i) => {
+         btn.addEventListener('click', () => {
+            btn.parentElement.remove();
+            movieDB.movies.splice(i, 1);
+
+            createMovieList(films, parent);
+         });
+      });
+   }
+   createMovieList(movieDB.movies, movieList);
+   deleteAdv(rec);
+   makeChanges();
+
+   btnAdd.addEventListener('touchstart', () => {
+      console.log('start');
+   });
+
+   btnAdd.addEventListener('touchmove', (e) => {
+      console.log(e.touches[0].pageY);
+   });
+   btnAdd.addEventListener('touchend', (e) => {
+      console.log(e.type);
+      console.log('end');
+   });
+});
+
+
+let a = 4;
+let b = 5;
+console.log((a ?? 200) * (b ?? 200));
+
+function lovefunc(flower1, flower2) {
+
+   return flower1 % 2 == 0 && flower2 % 2 == 0 || flower1 % 2 !== 0 && flower2 % 2 !== 0 ? false : true;
+}
+console.log(lovefunc(4, 4));
+
+
+
+var summation = function (num) {
+   let res = 0;
+   for (let i = 0; i <= num; i++) {
+      res += i;
+   }
+   return res;
 };
-movieDB.movies.sort();
+console.log(summation(2));
+
+
+function findSmallestInt(args) {
+   let min = args[0];
+
+   args.forEach(i => {
+      if (i < min) {
+         min = i;
+      }
+   })
+
+   return min;
+}
+console.log(findSmallestInt([288, 1, 112, 53, 64, 2]));
 
 
 
-poster.style.backgroundImage = 'url(../img/bg.jpg)';
+let ada = [1, 2, 3];
+console.log(ada[3]);
 
-rec.forEach(item => {
-   item.remove();
+
+function squareSum(numbers) {
+   let res = 0;
+   numbers.forEach((item) => {
+      res += item * item;
+   });
+   return res;
+}
+console.log(squareSum([1, 2, 3]));
+
+
+function nbYear(p0, percent, aug, p) {
+   // Initialise array.   
+   var finalCatch = [];
+   // Early conversion.
+   var percent = percent / 100;
+   // Looping through.
+   for (var p0; p0 < p; p0 += p0 * percent + aug) {
+      currValue = p0 + p0 * percent + aug;
+      finalCatch.push(currValue);
+   }
+
+   return finalCatch.length;
+}
+
+
+function nbYear(p0, percent, aug, p) {
+   let year = 0;
+   for (p0; p0 <= p; p0 += Math.min(p0 * (percent / 100)) + aug) {
+      year++;
+   }
+   return year;
+}
+console.log(nbYear(1500, 5, 100, 5000));
+
+const obj = {
+   name: 'asd',
+   surname: 'asdasdfsdf',
+   age: 20
+};
+
+console.log(Object.keys(obj));
+console.log(Object.values(obj));
+console.log(Object.entries(obj));
+
+
+function repeatStr(n, s) {
+   let string = '';
+   for (let i = 0; i < n; i++) {
+      string += `${s}`;
+   }
+   return string;
+}
+console.log(repeatStr(3, '*'));
+
+function makeNegative(num) {
+   return num <= 0 ? num : num *= -1;
+}
+console.log(makeNegative(0));
+
+const sss = [
+   { a: 5 },
+   { b: 6 },
+   { n: 7 }
+];
+const map = new Map();
+const budget = [1, 2, 3];
+sss.forEach((item, i) => {
+   map.set(item, budget[i]);
 });
 
-movieDB.movies.forEach((film, i) => {
-   movieList.innerHTML += `
-      <li class="promo__interactive-item">${i + 1} ${film}
-			<div class="delete"></div>
-		</li>
-      `;
-});
+
+console.log(map.size);
+
+// set
+const arr = ['dima', 'adnna', 'oleg', 'dasd', 'oleg'];
+
+function unifiq(array) {
+   let set = new Set(array);
+   set.delete('dima');
+   return Array.from(set);
+}
+console.log(unifiq(arr));
+
+const sameBig = BigInt(123333333333333333333333333333);
+
+console.log(1n + 1n);
+
+const bigint = 3n;
+const num = 3;
+console.log(bigint + BigInt(num));
+console.log(Number(bigint) + num);
